@@ -7,7 +7,7 @@ import { UserControls } from "./components/UserControls";
 
     // Set up options for our game
     let options = {
-        canvasSize: {x: 800, y: 640},          // The size of the game
+        canvasSize: {x: 800, y: 600},          // The size of the game
         clearColor: {r: 34, g: 32, b: 52},   // The color the game clears to
         inputs: [
             {name: UserControls.MOVE_LEFT, keys: ["a"]},

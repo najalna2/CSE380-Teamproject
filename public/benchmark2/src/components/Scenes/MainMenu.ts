@@ -19,21 +19,24 @@ export const MenuLayers = {
 export default class MainMenu extends Scene {
     
     private logo: Sprite;
+    private background: Sprite;
 
     loadScene(): void {
         this.load.image("logo", "assets/images/logo.png");
-        this.load.image("background", "assets/images/logo.png")
+        this.load.image("background", "assets/images/background.png")
     }
 
     public startScene(): void {
         this.addLayer("primary");
-        this.logo = this.add.sprite("logo", "primary");
-
-        let center = this.viewport.getCenter();
-        this.logo.position.set(center.x, center.y);
+        this.background = this.add.sprite("background", "primary");
         
+        let center = this.viewport.getCenter();
+//        let Origin = this.viewport.getOrigin();
+//        let View = this.viewport.getView();
+        this.background.position.set(center.x, center.y);
 
-/*
+
+    
         this.addUILayer(MenuLayers.MAIN);
         
         // Center the viewport
@@ -63,7 +66,12 @@ export default class MainMenu extends Scene {
         playBtn.onClick = () => {
             this.sceneManager.changeToScene(Level1);
         }
-*/
+
+
+        lvBtn.onClick = () => {
+            this.sceneManager.changeToScene(Level1);
+        }
+
     }
 }
 

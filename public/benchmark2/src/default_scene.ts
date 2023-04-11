@@ -15,8 +15,7 @@ import Color from "./Wolfie2D/Utils/Color";
 // This is a simple sample scene so something displays when you run the game.
 export default class default_scene extends Scene {
     /* ########## MEMBER DEFINITIONS ##########*/
-    private logo: Sprite;
-    private player: Graphic;
+    private background: Sprite;
 
     /* ########## BUILT-IN FUNCTIONS ########## */
     // The following are built-in abstract Scene functions you are meant to extend.
@@ -32,7 +31,7 @@ export default class default_scene extends Scene {
         // The second argument is the path to the actual image.
         // Paths start in the "dist/" folder, so start building your path from there
         this.load.image("logo", "assets/images/logo.png");
-        this.load.image("background", "assets/images/logo.png")
+        this.load.image("background", "assets/images/background.png")
     }
 
     // startScene() is where you should build any game objects you wish to have in your scene,
@@ -46,11 +45,11 @@ export default class default_scene extends Scene {
 
         // The first argument is the key we specified in "this.load.image"
         // The second argument is the name of the layer
-        this.logo = this.add.sprite("logo", "primary");
+        this.background = this.add.sprite("background", "primary");
 
         // Now, let's make sure our logo is in a good position
         let center = this.viewport.getCenter();
-        this.logo.position.set(center.x, center.y);
+        this.background.position.set(center.x, center.y);
 
 
 
