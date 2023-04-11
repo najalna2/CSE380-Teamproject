@@ -8,7 +8,7 @@ import default_scene from "./default_scene";
 
     // Set up options for our game
     let options = {
-        canvasSize: {x: 1200, y: 800},          // The size of the game
+        canvasSize: {x: 800, y: 640},          // The size of the game
         clearColor: {r: 0, g: 0, b: 0},   // The color the game clears to
         useWebGL: true
     }

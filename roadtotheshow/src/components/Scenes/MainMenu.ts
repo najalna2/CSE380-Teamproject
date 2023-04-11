@@ -4,6 +4,7 @@ import Button from "../../Wolfie2D/Nodes/UIElements/Button";
 import { UIElementType } from "../../Wolfie2D/Nodes/UIElements/UIElementTypes";
 import Scene from "../../Wolfie2D/Scene/Scene";
 import Color from "../../Wolfie2D/Utils/Color";
+import Sprite from "../../Wolfie2D/Nodes/Sprites/Sprite";
 import Level1 from "./Level1";
 
 
@@ -16,14 +17,29 @@ export const MenuLayers = {
 } as const;
 
 export default class MainMenu extends Scene {
+    
+    private logo: Sprite;
+
+    loadScene(): void {
+        this.load.image("logo", "assets/images/logo.png");
+        this.load.image("background", "assets/images/logo.png")
+    }
 
     public startScene(): void {
-        this.addUILayer(MenuLayers.MAIN);
+        this.addLayer("primary");
+        this.logo = this.add.sprite("logo", "primary");
 
+        let center = this.viewport.getCenter();
+        this.logo.position.set(center.x, center.y);
+        
+
+/*
+        this.addUILayer(MenuLayers.MAIN);
+        
         // Center the viewport
         let size = this.viewport.getHalfSize();
         this.viewport.setFocus(size);
-        this.viewport.setZoomLevel(5);
+        this.viewport.setZoomLevel(1);
 
         // Create a play button
         let playBtn = <Button>this.add.uiElement(UIElementType.BUTTON, MenuLayers.MAIN, {position: new Vec2(size.x, 300), text: "Play Game"});
@@ -32,21 +48,22 @@ export default class MainMenu extends Scene {
         playBtn.borderRadius = 0;
         playBtn.setPadding(new Vec2(50, 10));
         playBtn.font = "PixelSimple";
+
         
-        /* 
+        
         // Levels button
         let lvBtn =  <Button>this.add.uiElement(UIElementType.BUTTON, MenuLayers.LEVELS, {position: new Vec2(size.x, 400), text: "LEVEL"});
-        lvBtn.backgroundColor = Color.TRANSPARENT;
+        lvBtn.backgroundColor = Color.GREEN;
         lvBtn.borderColor = Color.WHITE;
         lvBtn.borderRadius = 0;
         lvBtn.setPadding(new Vec2(50, 10));
         lvBtn.font = "PixelSimple";
-*/
+        
         // When the play button is clicked, go to the next scene
         playBtn.onClick = () => {
             this.sceneManager.changeToScene(Level1);
         }
-
+*/
     }
 }
 
