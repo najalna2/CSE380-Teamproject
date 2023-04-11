@@ -1,5 +1,16 @@
 {
   "projects": {
     "default": "roadtotheshow-ebf4f"
-  }
+  },
+  "targets": {
+    "roadtotheshow-ebf4f": {
+      "hosting": {
+        "roadtotheshow-benchmark2": [
+          "roadtotheshow-benchmark2",
+          "to"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

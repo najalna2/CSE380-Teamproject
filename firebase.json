@@ -1,7 +1,4 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
   "hosting": {
     "public": "public",
     "ignore": [
@@ -9,23 +6,17 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
+    "redirects": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/benchmark1",
+        "destination": "/benchmark1/index.html",
+        "type": 301
+      },
+      {
+        "source": "/benchmark2",
+        "destination": "/benchmark2/dist/index.html",
+        "type": 302
       }
     ]
-  },
-  "emulators": {
-    "database": {
-      "port": 9000
-    },
-    "hosting": {
-      "port": 5000
-    },
-    "ui": {
-      "enabled": true
-    },
-    "singleProjectMode": true
   }
 }
