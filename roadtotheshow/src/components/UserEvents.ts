@@ -1,0 +1,12 @@
+export const UserEvents = {
+    LEVEL_START: "LEVEL_START", 
+
+    LEVEL_END: "LEVEL_END",
+
+    PLAYER_ENTERED_LEVEL_END: "PLAYER_ENTERED_LEVEL_END",
+
+    HEALTH_CHANGE: "HEALTH_CHANGE",
+
+    PLAYER_DEAD: "PLAYER_DEAD"
+    
+} as const;
