@@ -52,7 +52,7 @@ export default class default_scene extends Scene {
         this.background.position.set(center.x, center.y);
 
 
-
+/*
         // We can also create game objects (such as graphics and UIElements) without using loaded assets
         // Lets add a rectangle to use as the player object
         // For some game objects, you have to specify an options object. In this case, position and size:
@@ -66,6 +66,8 @@ export default class default_scene extends Scene {
 
         // Now, let's change the color of our player
         this.player.color = Color.ORANGE;
+
+        */
     }
 
     // updateScene() is where you can handle any frame by frame updates to your scene.
@@ -93,6 +95,6 @@ export default class default_scene extends Scene {
         const velocity = direction.scale(speed);
 
         // Finally, adjust the position of the player
-        this.player.position.add(velocity);
+        //this.player.position.add(velocity);
     }
 }

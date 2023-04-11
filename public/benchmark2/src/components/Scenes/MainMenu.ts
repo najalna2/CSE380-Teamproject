@@ -8,35 +8,33 @@ import Sprite from "../../Wolfie2D/Nodes/Sprites/Sprite";
 import Level1 from "./Level1";
 import Label from "../../Wolfie2D/Nodes/UIElements/Label"
 import UIElement from "../../Wolfie2D/Nodes/UIElement";
+import { MenuLayers } from "./MenuLayers";
+import control from "./control";
+import levelSelect from "./levelSelect";
+import help from "./help";
 
 
-// Layers for the main menu scene
-export const MenuLayers = {
-    MAIN: "MAIN",
-    LEVELS: "LEVELS",
-    CONTROLS: "CONTROLS",
-    HELP: "HELP"
-} as const;
 
 export default class MainMenu extends Scene {
-    
-    private logo: Sprite;
     private background: Sprite;
 
     loadScene(): void {
-        this.load.image("logo", "assets/images/logo.png");
-        this.load.image("background", "assets/images/background.png")
+        this.load.image("background", "assets/images/background.png");
+        this.load.image("control", "assets/images/control.png");
+        this.load.image("help", "assets/images/help.png");
     }
 
     public startScene(): void {
-        this.addLayer("primary");
-        this.addLayer("secondary");
-        this.background = this.add.sprite("background", "secondary");
-        this.logo = this.add.sprite("logo", "primary");
-        
         let center = this.viewport.getCenter();
+
+        let size = this.viewport.getHalfSize();
+        this.viewport.setFocus(size);
+        this.viewport.setZoomLevel(1);
+        
+
+        this.addLayer("primary");
+        this.background = this.add.sprite("background", "primary");
         this.background.position.set(center.x, center.y);
-        this.logo.position.set(center.x, 300);
 
         //add menus
         this.addUILayer(MenuLayers.MAIN);
@@ -44,10 +42,6 @@ export default class MainMenu extends Scene {
         this.addUILayer(MenuLayers.CONTROLS);
         this.addUILayer(MenuLayers.HELP);
         
-        // Center the viewport
-        let size = this.viewport.getHalfSize();
-        this.viewport.setFocus(size);
-        this.viewport.setZoomLevel(1);
 
         // Create a play button
         let playBtn = <Button>this.add.uiElement(UIElementType.BUTTON, MenuLayers.MAIN, {position: new Vec2(size.x, size.y - 200), text: "Play Game"});
@@ -95,9 +89,16 @@ export default class MainMenu extends Scene {
             this.sceneManager.changeToScene(Level1);
         }
 
-
         lvBtn.onClick = () => {
-            Label;
+            this.sceneManager.changeToScene(levelSelect);
+        }
+
+        conBtn.onClick = () => {
+            this.sceneManager.changeToScene(control);
+        }
+
+        helpBtn.onClick = () => {
+            this.sceneManager.changeToScene(help);
         }
 
     }
