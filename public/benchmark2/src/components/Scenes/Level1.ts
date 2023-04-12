@@ -7,8 +7,14 @@ import Viewport from "../../Wolfie2D/SceneGraph/Viewport";
 
 export default class Level1 extends Level {
 
+
+    public static readonly PLAYER_SPAWN = new Vec2(32, 32);
+    public static readonly PLAYER_SPRITE_KEY = "PLAYER_SPRITE_KEY";
+    public static readonly PLAYER_SPRITE_PATH = "assets/spritesheets/Hero.json";
+
+
     public static readonly TILEMAP_KEY = "LEVEL1";
-    public static readonly TILEMAP_PATH = "assets/tilemaps/Demo.json";
+    public static readonly TILEMAP_PATH = "assets/tilemaps/level1.json";
     public static readonly TILEMAP_SCALE = new Vec2(2, 2);
     public static readonly WALLS_LAYER_KEY = "Main";
 
@@ -19,6 +25,11 @@ export default class Level1 extends Level {
         this.tilemapKey = Level1.TILEMAP_KEY;
         this.tilemapScale = Level1.TILEMAP_SCALE;
         this.wallsLayerKey = Level1.WALLS_LAYER_KEY;
+
+        // Set the key for the player's sprite
+        this.playerSpriteKey = Level1.PLAYER_SPRITE_KEY;
+        // Set the player's spawn
+        this.playerSpawn = Level1.PLAYER_SPAWN;
     }
 
 
@@ -26,5 +37,12 @@ export default class Level1 extends Level {
     public loadScene(): void {
         // Load in the tilemap
         this.load.tilemap(this.tilemapKey, Level1.TILEMAP_PATH);
+        
+        this.load.spritesheet(this.playerSpriteKey, Level1.PLAYER_SPRITE_PATH);
+    }
+
+    protected initializeViewport(): void {
+        super.initializeViewport();
+        this.viewport.setBounds(16, 16, 496, 512);
     }
 }

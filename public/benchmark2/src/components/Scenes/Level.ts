@@ -17,10 +17,10 @@ import Viewport from "../../Wolfie2D/SceneGraph/Viewport";
 import Timer from "../../Wolfie2D/Timing/Timer";
 import Color from "../../Wolfie2D/Utils/Color";
 import { EaseFunctionType } from "../../Wolfie2D/Utils/EaseFunctions";
-//import PlayerController, { PlayerTweens } from "../Player/PlayerController";
+import PlayerController, { PlayerTweens } from "../Player/PlayerController";
 //import PlayerWeapon from "../Player/PlayerWeapon";
 
-//import { HW3Events } from "../HW3Events";
+import { UserEvents } from "../UserEvents";
 import { HWPhysicsGroups } from "../HWPhysicsGroups";
 import HWFactoryManager from "../Factory/HWFactoryManager";
 import MainMenu from "./MainMenu";
@@ -41,10 +41,12 @@ export type HWLayer = typeof HWLayers[keyof typeof HWLayers]
 
 export default abstract class Level extends Scene {
     public add: HWFactoryManager;
-/*   
+  
     protected playerSpriteKey: string;
     protected player: AnimatedSprite;
     protected playerSpawn: Vec2;
+
+/* 
 
     private healthLabel: Label;
     private healthBar: Label;
@@ -64,11 +66,9 @@ export default abstract class Level extends Scene {
 
     protected levelMusicKey: string;
     protected jumpAudioKey: string;
-    protected tileDestroyedAudioKey: string;
  */
     
     protected tilemapKey: string;
-    protected destructibleLayerKey: string;
     protected wallsLayerKey: string;
     /** The scale for the tilemap */
     protected tilemapScale: Vec2;
@@ -79,8 +79,7 @@ export default abstract class Level extends Scene {
         super(viewport, sceneManager, renderingManager, {...options, physics: {
             groupNames: [
                 HWPhysicsGroups.GROUND, 
-                HWPhysicsGroups.PLAYER, 
-                HWPhysicsGroups.PLAYER_WEAPON
+                HWPhysicsGroups.PLAYER
             ],
             collisions:
             [
@@ -102,17 +101,37 @@ export default abstract class Level extends Scene {
 
     protected initializeTilemap(): void {
         if (this.tilemapKey === undefined || this.tilemapScale === undefined) {
-            throw new Error("Cannot add the homework 4 tilemap unless the tilemap key and scale are set.");
+            throw new Error("Cannot add the tilemap unless the tilemap key and scale are set.");
         }
         // Add the tilemap to the scene
         this.add.tilemap(this.tilemapKey, this.tilemapScale);
 
-        if (this.destructibleLayerKey === undefined || this.wallsLayerKey === undefined) {
-            throw new Error("Make sure the keys for the destuctible layer and wall layer are both set");
-        }
-
         // Get the wall and destructible layers 
         this.walls = this.getTilemap(this.wallsLayerKey) as OrthogonalTilemap;
+    }
+    
+    protected initializePlayer(key: string): void {
+        if (this.playerSpawn === undefined) {
+            throw new Error("Player spawn must be set before initializing the player!");
+        }
+
+        // Add the player to the scene
+        this.player = this.add.animatedSprite(key, HWLayers.PRIMARY);
+        this.player.scale.set(1, 1);
+        this.player.position.copy(this.playerSpawn);
+        
+        // Give the player physics and setup collision groups and triggers for the player
+        this.player.addPhysics(new AABB(this.player.position.clone(), this.player.boundary.getHalfSize().clone()));
+        this.player.setGroup(HWPhysicsGroups.PLAYER);
+    }
+
+    protected initializeViewport(): void {
+        if (this.player === undefined) {
+            throw new Error("Player must be initialized before setting the viewport to folow the player");
+        }
+        this.viewport.follow(this.player);
+        this.viewport.setZoomLevel(5);
+        this.viewport.setBounds(0, 0, 512, 512);
     }
 
 
