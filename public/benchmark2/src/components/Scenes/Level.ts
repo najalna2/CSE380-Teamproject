@@ -21,10 +21,11 @@ import { EaseFunctionType } from "../../Wolfie2D/Utils/EaseFunctions";
 //import PlayerWeapon from "../Player/PlayerWeapon";
 
 //import { HW3Events } from "../HW3Events";
-//import { HW3PhysicsGroups } from "../HW3PhysicsGroups";
-//import HW3FactoryManager from "../Factory/HW3FactoryManager";
+import { HWPhysicsGroups } from "../HWPhysicsGroups";
+import HWFactoryManager from "../Factory/HWFactoryManager";
 import MainMenu from "./MainMenu";
 import Particle from "../../Wolfie2D/Nodes/Graphics/Particle";
+
 /**
  * A const object for the layer names
  */
@@ -39,22 +40,80 @@ export const HWLayers = {
 export type HWLayer = typeof HWLayers[keyof typeof HWLayers]
 
 export default abstract class Level extends Scene {
+    public add: HWFactoryManager;
+/*   
+    protected playerSpriteKey: string;
+    protected player: AnimatedSprite;
+    protected playerSpawn: Vec2;
+
+    private healthLabel: Label;
+    private healthBar: Label;
+    private healthBarBg: Label;
+
+    protected levelEndPosition: Vec2;
+    protected levelEndHalfSize: Vec2;
+
+    protected levelEndArea: Rect;
+    protected nextLevel: new (...args: any) => Scene;
+    protected levelEndTimer: Timer;
+    protected levelEndLabel: Label;
+
+    // Level end transition timer and graphic
+    protected levelTransitionTimer: Timer;
+    protected levelTransitionScreen: Rect;
+
+    protected levelMusicKey: string;
+    protected jumpAudioKey: string;
+    protected tileDestroyedAudioKey: string;
+ */
+    
     protected tilemapKey: string;
     protected destructibleLayerKey: string;
     protected wallsLayerKey: string;
     /** The scale for the tilemap */
     protected tilemapScale: Vec2;
-    /** The destrubtable layer of the tilemap */
-    protected destructable: OrthogonalTilemap;
     /** The wall layer of the tilemap */
     protected walls: OrthogonalTilemap;
 
-    public startScene(): void {
-        // Initialize the layers
-        this.initLayers();
+    public constructor(viewport: Viewport, sceneManager: SceneManager, renderingManager: RenderingManager, options: Record<string, any>) {
+        super(viewport, sceneManager, renderingManager, {...options, physics: {
+            groupNames: [
+                HWPhysicsGroups.GROUND, 
+                HWPhysicsGroups.PLAYER, 
+                HWPhysicsGroups.PLAYER_WEAPON
+            ],
+            collisions:
+            [
+                [0, 1, 1, 0],
+                [1, 0, 0, 1],
+                [1, 0, 0, 1],
+                [0, 1, 1, 0],
+            ]
+        }});
+        this.add = new HWFactoryManager(this, this.tilemaps);
+    }
 
+
+    public startScene(): void {
         // Initialize the tilemaps
         this.initializeTilemap();
     }
+
+
+    protected initializeTilemap(): void {
+        if (this.tilemapKey === undefined || this.tilemapScale === undefined) {
+            throw new Error("Cannot add the homework 4 tilemap unless the tilemap key and scale are set.");
+        }
+        // Add the tilemap to the scene
+        this.add.tilemap(this.tilemapKey, this.tilemapScale);
+
+        if (this.destructibleLayerKey === undefined || this.wallsLayerKey === undefined) {
+            throw new Error("Make sure the keys for the destuctible layer and wall layer are both set");
+        }
+
+        // Get the wall and destructible layers 
+        this.walls = this.getTilemap(this.wallsLayerKey) as OrthogonalTilemap;
+    }
+
 
 }
