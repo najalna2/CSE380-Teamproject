@@ -1,0 +1,65 @@
+{
+    "frames":{
+        "roadToTheShow_mob20.png":{
+            "frame":{"x":0,"y":0,"w":150,"h":200},
+            "rotated":false,
+            "trimmed":false,
+            "spriteSourceSize":{"x":0,"y":0,"w":150,"h":200},
+            "sourceSize":{"w":150,"h":200}
+    },
+        "roadToTheShow_mob21.png":{
+            "frame":{"x":150,"y":0,"w":150,"h":200},
+            "rotated":false,
+            "trimmed":false,
+            "spriteSourceSize":{"x":0,"y":0,"w":150,"h":200},
+            "sourceSize":{"w":150,"h":200}
+    },
+        "roadToTheShow_mob22.png":{
+            "frame":{"x":0,"y":200,"w":150,"h":200},
+            "rotated":false,
+            "trimmed":false,
+            "spriteSourceSize":{"x":0,"y":0,"w":150,"h":200},
+            "sourceSize":{"w":150,"h":200}
+    },
+        "roadToTheShow_mob23.png":{
+            "frame":{"x":150,"y":200,"w":150,"h":200},
+            "rotated":false,
+            "trimmed":false,
+            "spriteSourceSize":{"x":0,"y":0,"w":150,"h":200},
+            "sourceSize":{"w":150,"h":200}
+    }
+},
+    "sequence":
+    [
+    {
+        "name": "idle",
+        "delay": 0.1,
+        "node":
+            [
+                "roadToTheShow_mob20"
+            ]
+    },
+    {
+        "name": "throw",
+        "delay": 0.1,
+        "node":
+            [
+                "roadToTheShow_mob20",
+                "roadToTheShow_mob21",
+                "roadToTheShow_mob22",
+                "roadToTheShow_mob23"
+
+            ]
+    }
+    ]
+    
+    ,"meta":{
+        "app":"https://github.com/piskelapp/piskel/",
+        "version":"1.0",
+        "image":"roadToTheShow_mob2.png",
+        "format":"RGBA8888","size":{
+            "w":300,
+            "h":400
+        }
+    }
+}

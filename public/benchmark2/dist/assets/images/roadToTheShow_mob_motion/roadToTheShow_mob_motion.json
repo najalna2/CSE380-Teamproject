@@ -1,0 +1,44 @@
+{"frames":{
+    "roadToTheShow_mob_motion0.png":{
+        "frame":{"x":0,"y":0,"w":150,"h":200},
+        "rotated":false,
+        "trimmed":false,
+        "spriteSourceSize":{"x":0,"y":0,"w":150,"h":200},
+        "sourceSize":{"w":150,"h":200}
+    },
+    "roadToTheShow_mob_motion1.png":{
+        "frame":{"x":150,"y":0,"w":150,"h":200},
+        "rotated":false,
+        "trimmed":false,
+        "spriteSourceSize":{"x":0,"y":0,"w":150,"h":200},
+        "sourceSize":{"w":150,"h":200}
+        }
+    },
+    "sequence":
+        [
+            {
+                "name": "idle",
+                "delay": 0.1,
+                "node":
+                    [
+                        "roadToTheShow_mob_motion0"
+                    ]
+            },
+            {
+                "name": "attack",
+                "delay": 0.1,
+                "node":
+                    [
+                        "roadToTheShow_mob_motion0",
+                        "roadToTheShow_mob_motion1"
+                    ]
+            }
+        ],
+    "meta":{
+        "app":"https://github.com/piskelapp/piskel/",
+        "version":"1.0",
+        "image":"roadToTheShow_mob_motion.png",
+        "format":"RGBA8888",
+        "size":{"w":300,"h":200}
+        }
+    }
