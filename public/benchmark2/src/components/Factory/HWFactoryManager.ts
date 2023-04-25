@@ -11,7 +11,7 @@ import CNF from "./HWCanvasNodeFactory";
  * An extension of Wolfie2ds FactoryManager. I'm creating a more specific factory for my custom HW3Level. If you want to get custom
  * GameNodes into your scenes (with more specific properties) you'll have to extend the factory classes.
  */
-export default class HW3FactoryManager extends FactoryManager {
+export default class HWFactoryManager extends FactoryManager {
 
     private hwCanvasNodeFactory: CNF;
 

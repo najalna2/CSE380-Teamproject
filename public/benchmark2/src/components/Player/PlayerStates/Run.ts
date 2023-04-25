@@ -3,11 +3,11 @@ import Input from "../../../Wolfie2D/Input/Input";
 import { UserControls } from "../../UserControls";
 import PlayerState from "./PlayerState";
 
-export default class Walk extends PlayerState {
+export default class Run extends PlayerState {
 
 	onEnter(options: Record<string, any>): void {
 		this.parent.speed = this.parent.MIN_SPEED;
-        this.owner.animation.playIfNotAlready(PlayerAnimations.WALK);
+        this.owner.animation.playIfNotAlready(PlayerAnimations.RUN);
 	}
 
 	update(deltaT: number): void {

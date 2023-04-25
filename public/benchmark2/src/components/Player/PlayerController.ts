@@ -21,7 +21,7 @@ import Dead from "./PlayerStates/Dead";
  */
 export const PlayerAnimations = {
     IDLE: "IDLE",
-    WALK: "WALK",
+    RUN: "RUN",
     JUMP: "JUMP",
 } as const
 
@@ -29,6 +29,7 @@ export const PlayerAnimations = {
  * Tween animations the player can player.
  */
 export const PlayerTweens = {
+    FLIP: "FLIP",
     DEATH: "DEATH"
 } as const
 
@@ -70,12 +71,12 @@ export default class PlayerController extends StateMachineAI {
 
         //this.weapon = options.weaponSystem;
 
-        this.tilemap = this.owner.getScene().getTilemap(options.tilemap) as OrthogonalTilemap;
+        //this.tilemap = this.owner.getScene().getTilemap(options.tilemap) as OrthogonalTilemap;
         this.speed = 400;
         this.velocity = Vec2.ZERO;
 
-//        this.health = 10
- //       this.maxHealth = 10;
+        this.health = 3;
+        this.maxHealth = 3;
 
         // Add the different states the player can be in to the PlayerController 
 		this.addState(PlayerStates.IDLE, new Idle(this, this.owner));
@@ -107,7 +108,7 @@ export default class PlayerController extends StateMachineAI {
 
     public get speed(): number { return this._speed; }
     public set speed(speed: number) { this._speed = speed; }
-/*
+
     public get maxHealth(): number { return this._maxHealth; }
     public set maxHealth(maxHealth: number) { this._maxHealth = maxHealth; }
 
@@ -119,5 +120,4 @@ export default class PlayerController extends StateMachineAI {
         // If the health hit 0, change the state of the player
         if (this.health === 0) { this.changeState(PlayerStates.DEAD); }
     }
-    */
 }
