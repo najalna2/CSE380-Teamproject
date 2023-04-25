@@ -324,24 +324,24 @@ export default abstract class HW3Level extends Scene {
     protected initializeUI(): void {
 
         // HP Label
-		this.healthLabel = <Label>this.add.uiElement(UIElementType.LABEL, HW3Layers.UI, {position: new Vec2(205, 20), text: "HP "});
-		this.healthLabel.size.set(300, 30);
+		this.healthLabel = <Label>this.add.uiElement(UIElementType.LABEL, HW3Layers.UI, {position: new Vec2(40, 5), text: "HP "});
+		this.healthLabel.size.set(200, 30);
 		this.healthLabel.fontSize = 24;
 		this.healthLabel.font = "Courier";
 
         // HealthBar
-		this.healthBar = <Label>this.add.uiElement(UIElementType.LABEL, HW3Layers.UI, {position: new Vec2(250, 20), text: ""});
-		this.healthBar.size = new Vec2(300, 25);
+		this.healthBar = <Label>this.add.uiElement(UIElementType.LABEL, HW3Layers.UI, {position: new Vec2(40, 10), text: ""});
+		this.healthBar.size = new Vec2(200, 25);
 		this.healthBar.backgroundColor = Color.GREEN;
 
         // HealthBar Border
-		this.healthBarBg = <Label>this.add.uiElement(UIElementType.LABEL, HW3Layers.UI, {position: new Vec2(250, 20), text: ""});
-		this.healthBarBg.size = new Vec2(300, 25);
+		this.healthBarBg = <Label>this.add.uiElement(UIElementType.LABEL, HW3Layers.UI, {position: new Vec2(40, 10), text: ""});
+		this.healthBarBg.size = new Vec2(200, 25);
 		this.healthBarBg.borderColor = Color.BLACK;
 
         // End of level label (start off screen)
         this.levelEndLabel = <Label>this.add.uiElement(UIElementType.LABEL, HW3Layers.UI, { position: new Vec2(-300, 100), text: "Level Complete" });
-        this.levelEndLabel.size.set(1200, 60);
+        this.levelEndLabel.size.set(800, 60);
         this.levelEndLabel.borderRadius = 0;
         this.levelEndLabel.backgroundColor = new Color(34, 32, 52);
         this.levelEndLabel.textColor = Color.WHITE;

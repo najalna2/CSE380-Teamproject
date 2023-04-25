@@ -5,7 +5,8 @@ import Scene from "../../Wolfie2D/Scene/Scene";
 import Color from "../../Wolfie2D/Utils/Color";
 import Sprite from "../../Wolfie2D/Nodes/Sprites/Sprite";
 import MainMenu from "./MainMenu";
-
+import LEVEL1 from "./HW3Level1";
+import LEVEL2 from "./HW3Level2";
 
 export const LevelLayers = {
     LEVEL1: "LEVEL1",
@@ -109,11 +110,11 @@ export default class levelSelect extends Scene {
         }
 
         lv1Btn.onClick = () => {
-            this.sceneManager.changeToScene(MainMenu);
+            this.sceneManager.changeToScene(LEVEL1);
         }
         
         lv2Btn.onClick = () => {
-            this.sceneManager.changeToScene(MainMenu);
+            this.sceneManager.changeToScene(LEVEL2);
         }
 
         lv3Btn.onClick = () => {
